@@ -251,6 +251,13 @@ int main (int argc, char **argv)
 const char *stop;
 int rows=0;
 
+#ifdef HAVE_PLEDGE
+if (pledge("stdio dns inet rpath", "") < 0) {
+    perror("pledge()");
+    return -1;
+}
+#endif /* HAVE_PLEDGE */
+
 if (argc<2) {
     fprintf(stderr, "Usage: tkfstop stopref [rows]\n");
     return 1;
@@ -270,6 +277,13 @@ if (argc==3) {
 
 
 http_init();
+
+#ifdef HAVE_PLEDGE
+if (pledge("stdio dns inet", "") < 0) {
+    perror("pledge()");
+    return -1;
+}
+#endif /* HAVE_PLEDGE */
 
 if (foli_stop_update(stop)!=0) {
     fprintf(stderr, "Invalid stop or no data\n");
