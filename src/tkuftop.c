@@ -423,6 +423,13 @@ int main (int argc, char **argv)
 {
 int opt;
 
+#ifdef HAVE_PLEDGE
+if (pledge("stdio dns inet tty rpath", "") < 0) {
+    perror("pledge()");
+    return -1;
+}
+#endif /* HAVE_PLEDGE */
+
 while ((opt = getopt(argc, argv, "qgmcos:t:h:i:")) != -1) {
     switch (opt) {
     case 's':
@@ -482,6 +489,13 @@ while ((opt = getopt(argc, argv, "qgmcos:t:h:i:")) != -1) {
 
 mosquitto_lib_init();
 http_init();
+
+#ifdef HAVE_PLEDGE
+if (pledge("stdio dns inet tty", "") < 0) {
+    perror("pledge()");
+    return -1;
+}
+#endif /* HAVE_PLEDGE */
 
 ri.bikes_total_avail=-1;
 ri.rentals=0;

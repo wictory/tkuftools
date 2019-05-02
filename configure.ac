@@ -26,7 +26,7 @@ AC_TYPE_SIZE_T
 # Checks for library functions.
 AC_FUNC_MALLOC
 AC_FUNC_REALLOC
-AC_CHECK_FUNCS([memset select strtol strverscmp])
+AC_CHECK_FUNCS([memset select strtol strverscmp pledge])
 
 AM_INIT_AUTOMAKE([-Wall -Werror foreign subdir-objects])
 AC_CONFIG_FILES([Makefile src/Makefile])
