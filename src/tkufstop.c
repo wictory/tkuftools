@@ -6,6 +6,8 @@
 #include <time.h>
 #include <math.h>
 
+#include <config.h>
+
 #include "http.h"
 #include "json.h"
 

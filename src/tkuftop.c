@@ -11,6 +11,8 @@
 
 #include <mosquitto.h>
 
+#include <config.h>
+
 #include "http.h"
 #include "json.h"
 #include "racks.h"
@@ -52,7 +54,11 @@ static int cmp_rack_stop_code(const void * a, const void * b)
 const Rack *aa=(const Rack *)a;
 const Rack *bb=(const Rack *)b;
 
+#ifdef HAVE_STRVERSCMP
 return strverscmp(aa->stop_code, bb->stop_code);
+#else
+return strcmp(aa->stop_code, bb->stop_code);
+#endif /* HAVE_STRVERSCMP */
 }
 
 static int cmp_rack_name(const void * a, const void * b)
@@ -60,7 +66,11 @@ static int cmp_rack_name(const void * a, const void * b)
 const Rack *aa=(const Rack *)a;
 const Rack *bb=(const Rack *)b;
 
+#ifdef HAVE_STRVERSCMP
 return strverscmp(aa->name, bb->name);
+#else
+return strcmp(aa->name, bb->name);
+#endif /* HAVE_STRVERSCMP */
 }
 
 static int cmp_rack_bikes(const void * a, const void * b)
