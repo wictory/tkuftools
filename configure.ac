@@ -14,7 +14,9 @@ AC_PROG_CC
 AC_PROG_INSTALL
 
 # Checks for libraries.
-AC_CHECK_LIB([m], [round])
+AC_SEARCH_LIBS([round], [m], [], [
+  AC_MSG_ERROR([unable to find the round() function])
+])
 PKG_CHECK_MODULES(LIBCURL, libcurl)
 PKG_CHECK_MODULES(LIBMOSQUITTO, libmosquitto)
 PKG_CHECK_MODULES(JSON_C, json-c)
