@@ -1,3 +1,5 @@
+#include <config.h>
+
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
@@ -10,8 +12,6 @@
 #include <signal.h>
 
 #include <mosquitto.h>
-
-#include <config.h>
 
 #include "http.h"
 #include "json.h"

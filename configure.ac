@@ -6,6 +6,9 @@ AC_INIT([FULL-PACKAGE-NAME], [VERSION], [BUG-REPORT-ADDRESS])
 AC_CONFIG_SRCDIR([src/http.c])
 AC_CONFIG_HEADERS([config.h])
 
+# This is required in case strverscmp(3) is available.
+AC_GNU_SOURCE
+
 # Checks for programs.
 AC_PROG_CC
 AC_PROG_INSTALL
